@@ -1,0 +1,29 @@
+{
+  "name": "bangumi-list-v2-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "clean": "rimraf dist",
+    "tsc": "tsc",
+    "build": "npm-run-all clean tsc",
+    "start": "node ."
+  },
+  "author": "Botao",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.22.0",
+    "express": "^4.17.1",
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.13",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.175"
+  }
+}
