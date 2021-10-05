@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "es5",
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "composite": true,
+    "noEmitOnError": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

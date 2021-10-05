@@ -1,0 +1,35 @@
+{
+  "presets": [
+    ["@babel/preset-env",
+      {
+        "modules": false
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "date-fns",
+    "lodash"
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        "@babel/preset-react"
+      ]
+    },
+    "development": {
+      "presets": [
+        ["@babel/preset-react",
+          {
+            "development": true,
+            "runtime": "automatic"
+          }
+        ]
+      ],
+      "plugins": [
+        "react-refresh/babel"
+      ]
+    }
+  }
+}

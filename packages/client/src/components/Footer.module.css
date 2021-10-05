@@ -1,0 +1,20 @@
+.root {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 12px 24px;
+}
+
+.root p + p {
+  margin-left: 0.5em;
+}
+
+.root p + p::before {
+  content: "|";
+  font-family: "airal";
+  margin-right: 0.5em;
+  text-align: center;
+  font-size: 14px;;
+  vertical-align: 1px;
+}

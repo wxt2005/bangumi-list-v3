@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+  },
+  "references": [{
+    "path": "../shared/tsconfig.build.json"
+  }],
+  "typeRoots": [
+    "./src/types", "node_modules/@types"
+  ]
+}

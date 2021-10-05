@@ -1,8 +1,12 @@
 {
-  "name": "bangumi-list-v2-shared",
+  "name": "bangumi-list-v3-shared",
   "version": "1.0.0",
+  "main": "dist/index.js",
   "description": "",
   "scripts": {
+    "clean": "rimraf dist *.tsbuildinfo",
+    "tsc": "tsc -b tsconfig.build.json",
+    "build": "npm-run-all clean tsc"
   },
   "author": "Botao",
   "license": "MIT",

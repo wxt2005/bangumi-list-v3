@@ -1,0 +1,79 @@
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .links {
+    overflow: auto;
+
+  }
+}
+
+.link {
+  font-size: 20px;
+  flex-basis: 25%;
+  margin-bottom: 12px;
+  font-family: monospace;
+}
+
+@media (max-width: 640px) {
+  .link {
+    flex-basis: 100%;
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .form {
+    align-items: flex-end;
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.label {
+  margin-right: 6px;
+}
+
+@media (max-width: 640px) {
+  .label {
+    margin-bottom: 6px;
+  }
+}
+
+.select {
+  font-size: 20px;
+  padding: 2px 6px;
+  margin-right: 12px;
+  width: 100px;
+  text-align: center;
+}
+
+.confirmButton {
+  background: var(--color-theme-green);
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  transition: opacity 0.3s ease;
+}
+
+.confirmButton:hover,
+.confirmButton:active {
+  opacity: var(--active-opacity);
+}

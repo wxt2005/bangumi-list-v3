@@ -77,3 +77,5 @@ web_modules/
 .run/
 data/
 dist/
+.env
+stats.json

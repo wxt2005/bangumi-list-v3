@@ -1,16 +1,26 @@
 {
-  "name": "bangumi-list-v2",
+  "name": "bangumi-list-v3",
   "version": "1.0.0",
   "description": "Monorepo for bangumi-list v2 server & client",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./packages/*/src/**/*.ts",
-    "lint:fix": "eslint --fix ./packages/*/src/**/*.ts"
+    "clean": "npm run clean --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "npm run build -w packages/shared",
+    "dev:client": "npm run dev -w packages/client",
+    "dev:server": "npm run dev -w packages/server",
+    "dev": "npm-run-all -l build:shared -p dev:server dev:client",
+    "lint": "eslint --ext .jsx,.js,.ts,.tsx .",
+    "lint:fix": "eslint --fix  --ext .jsx,.js,.ts,.tsx .",
+    "prepare": "husky install",
+    "start": "npm run start -w packages/server"
   },
   "author": "Botao",
   "license": "MIT",
   "workspaces": [
-    "./packages/*"
+    "packages/shared",
+    "packages/server",
+    "packages/client"
   ],
   "private": true,
   "devDependencies": {
@@ -19,16 +29,27 @@
     "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "npm-run-all": "^4.1.5",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
     "ts-node": "^10.2.1",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.11.0",
     "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">= 16",
+    "npm": ">= 7"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   }
 }

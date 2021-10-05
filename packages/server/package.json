@@ -1,29 +1,44 @@
 {
-  "name": "bangumi-list-v2-server",
+  "name": "bangumi-list-v3-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/app.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "clean": "rimraf dist",
-    "tsc": "tsc",
+    "dev:base": "cross-env NODE_ENV=development ts-node-dev --respawn --rs --transpile-only --project tsconfig.build.json -r tsconfig-paths/register -r dotenv/config",
+    "dev": "npm run dev:base -- src/app.ts",
+    "dev:inspect": "npm run dev:base -- --inspect -- src/app.ts",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "tsc": "tsc -b tsconfig.build.json",
     "build": "npm-run-all clean tsc",
-    "start": "node ."
+    "start": "cross-env NODE_ENV=production node -r dotenv/config ."
   },
   "author": "Botao",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "axios": "^0.22.0",
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-validator": "^6.13.0",
     "fs-extra": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1"
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "pino-http": "^5.8.0",
+    "pinyin": "^2.10.2",
+    "sqlite3": "^5.0.2",
+    "pino-pretty": "^7.1.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/fs-extra": "^9.0.13",
-    "@types/lodash": "^4.14.175"
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/lodash": "^4.14.175",
+    "@types/md5": "^2.3.1",
+    "@types/pino-http": "^5.8.0",
+    "@types/pinyin": "^2.10.0",
+    "@types/sqlite3": "^3.1.7"
   }
 }
