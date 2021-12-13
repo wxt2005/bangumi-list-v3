@@ -10,7 +10,12 @@
     "build": "npm-run-all clean webpack",
     "dev": "cross-env NODE_ENV=development webpack serve --hot"
   },
-  "author": "Botao",
+  "author": "Botao <wxt2005@gmail.com> (https://github.com/wxt2005)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxt2005/bangumi-list-v3.git",
+    "directory": "packages/client"
+  },
   "license": "MIT",
   "private": true,
   "devDependencies": {

@@ -1,7 +1,15 @@
 {
   "name": "bangumi-list-v3",
   "version": "1.0.0",
-  "description": "Monorepo for bangumi-list v2 server & client",
+  "description": "Monorepo for bangumi-list v3 server & client",
+  "homepage": "https://github.com/wxt2005/bangumi-list-v3",
+  "bugs": {
+    "url": "https://github.com/wxt2005/bangumi-list-v3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxt2005/bangumi-list-v3.git"
+  },
   "main": "index.js",
   "scripts": {
     "clean": "npm run clean --workspaces --if-present",
@@ -15,7 +23,7 @@
     "prepare": "husky install",
     "start": "npm run start -w packages/server"
   },
-  "author": "Botao",
+  "author": "Botao <wxt2005@gmail.com> (https://github.com/wxt2005)",
   "license": "MIT",
   "workspaces": [
     "packages/shared",
