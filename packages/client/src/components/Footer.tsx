@@ -8,7 +8,7 @@ export default function Footer(): JSX.Element {
       <p>© 2014 - {currentYear} 番组放送</p>
       <p>
         <a
-          href="https://github.com/wxt2005/bangumi-list"
+          href="https://github.com/wxt2005/bangumi-list-v3"
           rel="noopener"
           target="_blank"
         >
