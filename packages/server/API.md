@@ -189,7 +189,7 @@
   ]
 }
 ```
-z
+
 ### PATCH /api/v1/preference/common
 
 ```json
