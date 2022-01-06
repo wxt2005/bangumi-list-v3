@@ -37,7 +37,7 @@ class UserPreferenceModel {
     );
     if (!row) return null;
     try {
-      return { ...JSON.parse(row.common), version: row.created_at || 0 };
+      return { ...JSON.parse(row.common), version: row.updated_at || 0 };
     } catch (error) {
       console.error(error);
       return null;
