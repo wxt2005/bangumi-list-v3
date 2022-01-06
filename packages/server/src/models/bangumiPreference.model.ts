@@ -37,7 +37,7 @@ class BangumiPreferenceModel {
     if (!row) return null;
     try {
       const watching = row.watching ? row.watching.split(',') : [];
-      return { watching, version: row.created_at || 0 };
+      return { watching, version: row.updated_at || 0 };
     } catch (error) {
       console.error(error);
       return null;
