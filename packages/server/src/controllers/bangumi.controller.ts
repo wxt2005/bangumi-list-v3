@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import bangumiModel from '../models/bangumi.model';
 import { SiteType } from 'bangumi-list-v3-shared';
+import moment from 'moment';
 
 export async function update(req: Request, res: Response): Promise<void> {
   try {
@@ -52,8 +53,16 @@ export async function getArchive(req: Request, res: Response): Promise<void> {
 }
 
 export async function getOnAir(req: Request, res: Response): Promise<void> {
-  const { onairIds, itemEntities } = bangumiModel;
+  const { noEndDateIds, itemEntities } = bangumiModel;
+  const now = moment();
+
   res.send({
-    items: onairIds.map((id) => itemEntities[id]),
+    items: noEndDateIds
+      .map((id) => itemEntities[id])
+      .filter((item) => {
+        const { begin } = item;
+        const beginDate = moment(begin);
+        return beginDate.isBefore(now);
+      }),
   });
 }

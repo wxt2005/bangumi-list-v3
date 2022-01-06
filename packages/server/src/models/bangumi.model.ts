@@ -32,7 +32,7 @@ export interface SiteMap {
 class BangumiModel {
   public seasons: string[] = [];
   public seasonIds: { [key: string]: string[] } = {};
-  public onairIds: string[] = [];
+  public noEndDateIds: string[] = [];
   public itemEntities: { [key: string]: Item } = {};
   public siteMap: SiteMap = {};
   public data?: Data;
@@ -93,17 +93,15 @@ class BangumiModel {
 
   private process() {
     if (!this.data) return;
-    const now = moment();
     const { items, siteMeta } = this.data;
 
     const seasons: Set<string> = new Set();
     const seasonIds: { [key: string]: string[] } = {};
-    const onairIds: string[] = [];
+    const noEndDateIds: string[] = [];
     const itemEntities: { [key: string]: Item } = {};
     for (const item of items) {
       const { begin, end } = item;
       const beginDate = moment(begin);
-      const endDate = end ? moment(end) : null;
       const season = beginDate.format('YYYY[q]Q');
       seasons.add(season);
       if (!seasonIds[season]) {
@@ -111,8 +109,8 @@ class BangumiModel {
       }
       const id = generateItemID(item);
       item.id = generateItemID(item);
-      if (beginDate.isBefore(now) && (!endDate || endDate.isAfter(now))) {
-        onairIds.push(id);
+      if (!end) {
+        noEndDateIds.push(id);
       }
       seasonIds[season].push(id);
       item.sites.sort(siteSortCompare);
@@ -121,7 +119,7 @@ class BangumiModel {
     }
     this.seasons = Array.from<string>(seasons);
     this.seasonIds = seasonIds;
-    this.onairIds = onairIds;
+    this.noEndDateIds = noEndDateIds;
     this.itemEntities = itemEntities;
 
     // Sites
