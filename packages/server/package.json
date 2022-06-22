@@ -32,7 +32,7 @@
     "moment": "^2.29.1",
     "pino-http": "^5.8.0",
     "pinyin": "^2.10.2",
-    "sqlite3": "^5.0.2",
+    "sqlite3": "^5.0.3",
     "pino-pretty": "^7.1.0"
   },
   "devDependencies": {
