@@ -22,10 +22,11 @@ export default function LoginPage(): JSX.Element {
   ) => {
     setPassword(e.currentTarget.value);
   };
-  const handleDisableSaveStatusChange: React.FormEventHandler<HTMLInputElement> =
-    (e) => {
-      setDisableSaveStatus(e.currentTarget.checked);
-    };
+  const handleDisableSaveStatusChange: React.FormEventHandler<
+    HTMLInputElement
+  > = (e) => {
+    setDisableSaveStatus(e.currentTarget.checked);
+  };
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -61,6 +62,7 @@ export default function LoginPage(): JSX.Element {
           required
           value={email}
           onInput={handleEmailChange}
+          placeholder=" "
         />
         <label htmlFor="password">密码</label>
         <input
@@ -74,8 +76,8 @@ export default function LoginPage(): JSX.Element {
           autoCorrect="off"
           autoCapitalize="off"
           required
-          minLength={PASSWORD_MIN_LENGTH}
           onInput={handlePasswordChange}
+          placeholder=" "
         />
         <div className={styles.saveBox}>
           <input

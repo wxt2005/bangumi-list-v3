@@ -50,6 +50,7 @@ export default function SignupPage(): JSX.Element {
           required
           value={email}
           onInput={handleEmailChange}
+          placeholder=" "
         />
         <label htmlFor="password">密码</label>
         <input
@@ -65,6 +66,7 @@ export default function SignupPage(): JSX.Element {
           required
           minLength={PASSWORD_MIN_LENGTH}
           onInput={handlePasswordChange}
+          placeholder=" "
         />
         <p className={styles.hint}>
           最短{PASSWORD_MIN_LENGTH}位的半角英文或者数字
