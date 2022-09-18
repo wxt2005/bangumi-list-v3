@@ -21,6 +21,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@prisma/client": "^4.3.1",
     "axios": "^0.22.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
