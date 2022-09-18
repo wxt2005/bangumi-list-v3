@@ -193,11 +193,14 @@
 }
 
 .inner dt {
-  opacity: 0.6;
   flex-grow: 0;
   flex-shrink: 0;
   margin-right: 6px;
   line-height: 1.4;
+}
+
+.inner dt::after {
+  content: ":";
 }
 
 .inner dd {
