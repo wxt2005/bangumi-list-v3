@@ -33,8 +33,8 @@
   width: 200px;
 }
 
-.input:invalid {
-  border: 1px solid red;
+.input:not(:focus):not(:placeholder-shown):invalid {
+  border: 2px solid red;
 }
 
 .input + label {

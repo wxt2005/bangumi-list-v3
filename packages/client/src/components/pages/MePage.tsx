@@ -48,7 +48,7 @@ export default function LoginPage(): JSX.Element {
       <h2 className={styles.title}>用户中心</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email">邮箱</label>
-        <input disabled className={styles.input} value={userEmail} />
+        <input id="email" disabled className={styles.input} value={userEmail} />
         <label htmlFor="oldPassword">原密码</label>
         <input
           id="oldPassword"
@@ -63,6 +63,7 @@ export default function LoginPage(): JSX.Element {
           required
           minLength={PASSWORD_MIN_LENGTH}
           onInput={handleOldPasswordChange}
+          placeholder=" "
         />
         <label htmlFor="newPassword">新密码</label>
         <input
@@ -78,6 +79,7 @@ export default function LoginPage(): JSX.Element {
           required
           minLength={PASSWORD_MIN_LENGTH}
           onInput={handleNewPasswordChange}
+          placeholder=" "
         />
         {showError ? <p className={styles.error}>保存失败 XD</p> : null}
         {showSuccess ? (
