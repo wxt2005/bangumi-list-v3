@@ -38,13 +38,15 @@ export default function ArchivePage(): JSX.Element | null {
   }, [season]);
 
   return (
-    <BaseContainer className={styles.root}>
-      <Top title={formatSeason(season)} onSearchInput={handleSearchInput} />
-      <BangumiItemTable
-        items={filteredItems}
-        isArchive
-        emptyText={isInSearch ? '无结果' : '暂无'}
-      />
-    </BaseContainer>
+    <main>
+      <BaseContainer className={styles.root}>
+        <Top title={formatSeason(season)} onSearchInput={handleSearchInput} />
+        <BangumiItemTable
+          items={filteredItems}
+          isArchive
+          emptyText={isInSearch ? '无结果' : '暂无'}
+        />
+      </BaseContainer>
+    </main>
   );
 }

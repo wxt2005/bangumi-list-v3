@@ -94,26 +94,28 @@ export default function OnAirPage(): JSX.Element {
   }, [bangumiPreferenceStatus]);
 
   return (
-    <BaseContainer className={styles.root}>
-      <Top onSearchInput={handleSearchInput} />
-      <header className={styles.header}>
-        <WeekdayTab
-          disabled={isInSearch}
-          activated={currentTab}
-          onClick={handleTabClick}
+    <main>
+      <BaseContainer className={styles.root}>
+        <Top onSearchInput={handleSearchInput} />
+        <header className={styles.header}>
+          <WeekdayTab
+            disabled={isInSearch}
+            activated={currentTab}
+            onClick={handleTabClick}
+          />
+          <Link
+            className={styles.settingBtn}
+            to="/config"
+            state={{ backgroundLocation: location }}
+          >
+            <span>设置</span>
+          </Link>
+        </header>
+        <BangumiItemTable
+          items={filteredItems}
+          emptyText={isInSearch ? '无结果' : '暂无'}
         />
-        <Link
-          className={styles.settingBtn}
-          to="/config"
-          state={{ backgroundLocation: location }}
-        >
-          <span>设置</span>
-        </Link>
-      </header>
-      <BangumiItemTable
-        items={filteredItems}
-        emptyText={isInSearch ? '无结果' : '暂无'}
-      />
-    </BaseContainer>
+      </BaseContainer>
+    </main>
   );
 }
