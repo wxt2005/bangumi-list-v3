@@ -44,7 +44,7 @@ export default function LoginPage(): JSX.Element {
   };
 
   return (
-    <main className={styles.root}>
+    <main className={styles.root} role="main">
       <h2 className={styles.title}>用户中心</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email">邮箱</label>

@@ -94,7 +94,7 @@ export default function OnAirPage(): JSX.Element {
   }, [bangumiPreferenceStatus]);
 
   return (
-    <main>
+    <main role="main">
       <BaseContainer className={styles.root}>
         <Top onSearchInput={handleSearchInput} />
         <header className={styles.header}>

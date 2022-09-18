@@ -38,7 +38,7 @@ export default function ArchivePage(): JSX.Element | null {
   }, [season]);
 
   return (
-    <main>
+    <main role="main">
       <BaseContainer className={styles.root}>
         <Top title={formatSeason(season)} onSearchInput={handleSearchInput} />
         <BangumiItemTable

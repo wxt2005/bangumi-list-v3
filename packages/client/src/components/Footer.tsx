@@ -4,7 +4,7 @@ import styles from './Footer.module.css';
 export default function Footer(): JSX.Element {
   const currentYear = useMemo(() => new Date().getFullYear(), []);
   return (
-    <footer className={styles.root}>
+    <footer className={styles.root} role="contentinfo">
       <p>© 2014 - {currentYear} 番组放送</p>
       <p>
         <a

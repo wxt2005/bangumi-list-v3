@@ -23,7 +23,7 @@ export default function Header(): JSX.Element {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} role="banner">
       <BaseContainer className={styles.container}>
         <h1 className={styles.title}>
           <Link to="/">番组放送</Link>
