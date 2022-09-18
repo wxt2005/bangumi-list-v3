@@ -76,7 +76,7 @@ export default function ConfigModal(): JSX.Element | null {
   };
 
   return (
-    <BaseModal title="设置" isVisible showClose onClose={handleClose}>
+    <BaseModal id="config" title="设置" isVisible onClose={handleClose}>
       <form className={styles.form} onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="newOnly">只显示新番</label>

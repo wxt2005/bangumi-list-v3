@@ -75,7 +75,7 @@ export default function ArchiveModal(): JSX.Element {
   };
 
   return (
-    <BaseModal title="历史数据" isVisible showClose onClose={handleClose}>
+    <BaseModal id="archive" title="历史数据" isVisible onClose={handleClose}>
       <form onSubmit={handleConfirm} className={styles.form}>
         <div className={styles.group}>
           <label htmlFor="year" className={styles.label}>

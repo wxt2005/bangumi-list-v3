@@ -7,23 +7,26 @@ import styles from './BaseModal.module.css';
 interface Props {
   children?: React.ReactNode;
   isVisible?: boolean;
-  title?: string;
-  showClose?: boolean;
+  title: string;
   clickMaskToClose?: boolean;
   onClose?: () => void;
+  id: string;
 }
 
 export default function BaseModal(props: Props): JSX.Element | null {
   const {
     children,
     isVisible = false,
-    showClose = false,
     clickMaskToClose = true,
     title,
     onClose,
+    id,
   } = props;
 
   if (!isVisible) return null;
+
+  const modalID = `modal-${id}`;
+  console.log(modalID);
 
   return (
     <ModalWrapper>
@@ -36,31 +39,34 @@ export default function BaseModal(props: Props): JSX.Element | null {
       >
         <FocusTrap
           focusTrapOptions={{
-            initialFocus: '#modal-close',
-            fallbackFocus: '#modal',
+            initialFocus: `#${modalID}-close`,
+            fallbackFocus: 'body',
           }}
         >
-          <div
-            id="modal"
+          <section
+            id={modalID}
             className={styles.container}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`${modalID}-title`}
           >
             <header className={styles.header}>
-              {title ? <h3 className={styles.title}>{title}</h3> : null}
-              {showClose ? (
-                <button
-                  className={styles.closeButton}
-                  type="button"
-                  onClick={onClose}
-                  aria-label="关闭"
-                  id="modal-close"
-                >
-                  <CloseIcon />
-                </button>
-              ) : null}
+              <h3 id={`${modalID}-title`} className={styles.title}>
+                {title}
+              </h3>
+              <button
+                className={styles.closeButton}
+                type="button"
+                onClick={onClose}
+                aria-label="关闭"
+                id={`${modalID}-close`}
+              >
+                <CloseIcon />
+              </button>
             </header>
             <section className={styles.content}>{children}</section>
-          </div>
+          </section>
         </FocusTrap>
       </div>
     </ModalWrapper>
