@@ -64,5 +64,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "dependencies": {
+    "focus-trap-react": "^10.0.0"
+  }
 }
