@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model bangumiPreference {
+  user_id    String  @id
+  watching   String?
+  created_at Int
+  updated_at Int
+}
+
+model preference {
+  user_id    String @id
+  common     String
+  created_at Int
+  updated_at Int
+}
+
+model tokens {
+  user_id String
+  token   String
+
+  @@id([user_id, token])
+}
+
+model users {
+  id         String @id
+  email      String @unique(map: "sqlite_autoindex_users_2")
+  password   String
+  role       Int
+  created_at Int
+  updated_at Int
+}

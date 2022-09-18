@@ -31,9 +31,10 @@
     "md5": "^2.3.0",
     "moment": "^2.29.1",
     "pino-http": "^5.8.0",
+    "pino-pretty": "^7.1.0",
     "pinyin": "^2.10.2",
-    "sqlite3": "^5.0.2",
-    "pino-pretty": "^7.1.0"
+    "prisma": "^4.3.1",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -45,5 +46,8 @@
     "@types/pino-http": "^5.8.0",
     "@types/pinyin": "^2.10.0",
     "@types/sqlite3": "^3.1.7"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   }
 }
