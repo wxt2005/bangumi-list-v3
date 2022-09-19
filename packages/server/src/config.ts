@@ -11,8 +11,6 @@ export const LOG_FILE = process.env.LOG_FILE || 'server.log';
 
 export const DB_DIR = process.env.DB_DIR || RUNTIME_DIR;
 
-export const DB_FILE = process.env.DB_FILE || 'db.db';
-
 export const DATA_DIR = process.env.DATA_DIR || RUNTIME_DIR;
 
 export const DATA_FILE = process.env.DATA_FILE || 'data.json';
