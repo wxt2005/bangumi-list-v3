@@ -3,7 +3,9 @@ import {
   VersionedCommonPreference,
   BangumiDomain,
 } from 'bangumi-list-v3-shared';
-import db from '../db';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const DEFAULT_COMMON_PREFERENCE: CommonPreference = {
   newOnly: false,
@@ -13,31 +15,21 @@ const DEFAULT_COMMON_PREFERENCE: CommonPreference = {
 };
 
 class UserPreferenceModel {
-  private tableName = 'preference';
-
-  public async initDB() {
-    await db.run(`
-    CREATE TABLE IF NOT EXISTS ${this.tableName} (
-      user_id TEXT PRIMARY KEY,
-      common TEXT NOT NULL,
-      created_at INTEGER NOT NULL,
-      updated_at INTEGER NOT NULL
-    ) WITHOUT ROWID;`);
-  }
-
   public async getCommon(
     userID: string
   ): Promise<VersionedCommonPreference | null> {
     if (!userID) throw new Error('User ID missing');
-    const row = await db.get(
-      `SELECT * FROM ${this.tableName} WHERE user_id = $userID`,
-      {
-        $userID: userID,
-      }
-    );
+    const row = await prisma.preference.findFirst({
+      where: {
+        userID,
+      },
+    });
     if (!row) return null;
     try {
-      return { ...JSON.parse(row.common), version: row.updated_at || 0 };
+      return {
+        ...JSON.parse(row.common),
+        version: row.updatedAt.getTime() || 0,
+      };
     } catch (error) {
       console.error(error);
       return null;
@@ -51,46 +43,36 @@ class UserPreferenceModel {
     if (!userID) throw new Error('User ID missing');
     const previousData = await this.getCommon(userID);
     const shouldCreateNew = previousData === null;
-    const now = Date.now();
+    const now = new Date();
 
     if (shouldCreateNew) {
       const newData = generateUpdatedData(updateData);
       const newDataString = JSON.stringify(newData);
-      await db.run(
-        `
-        INSERT INTO ${this.tableName} (user_id, common, created_at, updated_at)
-        VALUES($userID, $data, $createdAt, $updatedAt);
-      `,
-        {
-          $userID: userID,
-          $data: newDataString,
-          $createdAt: now,
-          $updatedAt: now,
-        }
-      );
-      return { ...newData, version: now };
+      await prisma.preference.create({
+        data: {
+          userID,
+          common: newDataString,
+          createdAt: now,
+          updatedAt: now,
+        },
+      });
+      return { ...newData, version: now.getTime() };
     } else {
       const newData = generateUpdatedData({
         ...previousData,
         ...updateData,
       });
       const newDataString = JSON.stringify(newData);
-      await db.run(
-        `
-        UPDATE ${this.tableName}
-        SET
-          common = $data,
-          updated_at = $updatedAt
-        WHERE
-          user_id = $userID
-      `,
-        {
-          $data: newDataString,
-          $updatedAt: now,
-          $userID: userID,
-        }
-      );
-      return { ...newData, version: now };
+      await prisma.preference.update({
+        where: {
+          userID,
+        },
+        data: {
+          common: newDataString,
+          updatedAt: now,
+        },
+      });
+      return { ...newData, version: now.getTime() };
     }
   }
 

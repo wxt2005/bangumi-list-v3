@@ -1,11 +1,6 @@
 import express from 'express';
 import apiV1Routes from './routes/v1';
 import bangumiModel from './models/bangumi.model';
-import userModel from './models/user.model';
-import tokenModel from './models/token.model';
-import userPreferenceModel from './models/userPreference.model';
-import bangumiPreferenceModel from './models/bangumiPreference.model';
-import db from './db';
 import fse from 'fs-extra';
 import pinoHttp from 'pino-http';
 import logger from './logger';
@@ -22,13 +17,8 @@ import './types';
   await fse.ensureDir(RUNTIME_DIR);
   await fse.ensureDir(LOG_DIR);
 
-  await db.init();
-  await userModel.initDB();
-  await tokenModel.initDB();
-  await userPreferenceModel.initDB();
-  await bangumiPreferenceModel.initDB();
   await bangumiModel.update(false);
-  await userModel.createAdminIfNotExist();
+  // await userModel.createAdminIfNotExist();
 
   const app = express();
 

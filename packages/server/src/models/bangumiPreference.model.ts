@@ -2,42 +2,26 @@ import {
   BangumiPreference,
   VersionedBangumiPreference,
 } from 'bangumi-list-v3-shared';
-import db from '../db';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const DEFAULT_BANGUMI_PREFERENCE: BangumiPreference = {
   watching: [],
 };
 
 class BangumiPreferenceModel {
-  private tableName = 'bangumiPreference';
-
-  public async initDB() {
-    await db.run(`
-    CREATE TABLE IF NOT EXISTS ${this.tableName} (
-      user_id TEXT NOT NULL,
-      watching TEXT,
-      created_at INTEGER NOT NULL,
-      updated_at INTEGER NOT NULL,
-      PRIMARY KEY (user_id)
-    ) WITHOUT ROWID;`);
-  }
-
   public async get(userID: string): Promise<VersionedBangumiPreference | null> {
     if (!userID) throw new Error('User ID missing');
-    const row = await db.get(
-      `
-      SELECT *
-      FROM ${this.tableName}
-      WHERE
-        user_id = $userID`,
-      {
-        $userID: userID,
-      }
-    );
+    const row = await prisma.bangumiPreference.findUnique({
+      where: {
+        userID,
+      },
+    });
     if (!row) return null;
     try {
       const watching = row.watching ? row.watching.split(',') : [];
-      return { watching, version: row.updated_at || 0 };
+      return { watching, version: row.updatedAt.getTime() || 0 };
     } catch (error) {
       console.error(error);
       return null;
@@ -52,41 +36,31 @@ class BangumiPreferenceModel {
 
     const previousData = await this.get(userID);
     const shouldCreateNew = previousData === null;
-    const now = Date.now();
+    const now = new Date();
 
     if (shouldCreateNew) {
       const newData = generateUpdatedData(updateData);
-      await db.run(
-        `
-        INSERT INTO ${this.tableName} (user_id, watching, created_at, updated_at)
-        VALUES($userID, $watching, $createdAt, $updatedAt);
-      `,
-        {
-          $userID: userID,
-          $watching: newData.watching.join(','),
-          $createdAt: now,
-          $updatedAt: now,
-        }
-      );
-      return { ...newData, version: now };
+      await prisma.bangumiPreference.create({
+        data: {
+          userID,
+          watching: newData.watching.join(','),
+          createdAt: now,
+          updatedAt: now,
+        },
+      });
+      return { ...newData, version: now.getTime() };
     } else {
       const newData = generateUpdatedData(updateData, previousData);
-      await db.run(
-        `
-        UPDATE ${this.tableName}
-        SET
-          watching = $watching,
-          updated_at = $updatedAt
-        WHERE
-          user_id = $userID
-      `,
-        {
-          $watching: newData.watching.join(','),
-          $updatedAt: now,
-          $userID: userID,
-        }
-      );
-      return { ...newData, version: now };
+      await prisma.bangumiPreference.update({
+        where: {
+          userID,
+        },
+        data: {
+          watching: newData.watching.join(','),
+          updatedAt: now,
+        },
+      });
+      return { ...newData, version: now.getTime() };
     }
   }
 
