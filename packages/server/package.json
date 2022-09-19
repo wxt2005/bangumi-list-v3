@@ -44,8 +44,7 @@
     "@types/lodash": "^4.14.175",
     "@types/md5": "^2.3.1",
     "@types/pino-http": "^5.8.0",
-    "@types/pinyin": "^2.10.0",
-    "@types/sqlite3": "^3.1.7"
+    "@types/pinyin": "^2.10.0"
   },
   "prisma": {
     "schema": "./src/prisma/schema.prisma",
