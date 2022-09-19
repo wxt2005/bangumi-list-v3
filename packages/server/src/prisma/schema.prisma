@@ -7,32 +7,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model bangumiPreference {
-  user_id    String  @id
-  watching   String?
-  created_at Int
-  updated_at Int
+model BangumiPreference {
+  userID    String  @id
+  watching  String?
+  createdAt DateTime
+  updatedAt DateTime
 }
 
-model preference {
-  user_id    String @id
-  common     String
-  created_at Int
-  updated_at Int
+model Preference {
+  userID    String @id
+  common    String
+  createdAt DateTime
+  updatedAt DateTime
 }
 
-model tokens {
-  user_id String
-  token   String
+model Token {
+  userID String
+  token  String
 
-  @@id([user_id, token])
+  @@id([userID, token])
 }
 
-model users {
+model User {
   id         String @id
-  email      String @unique(map: "sqlite_autoindex_users_2")
+  email      String @unique(map: "sqlite_autoindex_user_2")
   password   String
   role       Int
-  created_at Int
-  updated_at Int
+  createdAt DateTime
+  updatedAt DateTime
 }
