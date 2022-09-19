@@ -139,23 +139,6 @@ class UserModel {
     };
   }
 
-  public async createAdminIfNotExist() {
-    const email = process.env.ADMIN_EMAIL || 'admin@admin.com';
-    const password = process.env.ADMIN_PASSWORD || 'admin123456';
-    const isValid = await this.checkEmailValid(email);
-    if (!isValid) {
-      return;
-    }
-
-    await this.addUser(
-      {
-        email,
-        password,
-      },
-      UserRole.ADMIN
-    );
-  }
-
   public async changePassword(
     userID: string,
     newPassword: string

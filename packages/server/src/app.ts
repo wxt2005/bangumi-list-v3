@@ -18,10 +18,8 @@ import './types';
   await fse.ensureDir(LOG_DIR);
 
   await bangumiModel.update(false);
-  // await userModel.createAdminIfNotExist();
 
   const app = express();
-
   app.use(pinoHttp({ logger }));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
