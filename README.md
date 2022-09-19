@@ -4,7 +4,7 @@
 
 ```bash
 $ npm install
-$ cp packages/server/.env.example packages/server.env
+$ cp packages/server/.env.example packages/server/.env
 $ npm run dev
 ```
 
