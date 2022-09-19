@@ -12,7 +12,9 @@ COPY . .
 
 EXPOSE 3000
 
-RUN npm install && npm run build
+RUN npm install
+RUN npm run prisma:generate -w packages/server
+RUN npm run build
 RUN npm prune --production
 
 CMD [ "npm", "start" ]
