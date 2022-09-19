@@ -66,13 +66,7 @@ const config = {
           {
             loader: '@svgr/webpack',
             options: {
-              svgoConfig: {
-                plugins: [
-                  {
-                    removeDimensions: true,
-                  },
-                ],
-              },
+              dimensions: false,
             },
           },
         ],
