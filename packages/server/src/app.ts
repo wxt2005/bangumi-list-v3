@@ -6,6 +6,7 @@ import pinoHttp from 'pino-http';
 import logger from './logger';
 import {
   PORT,
+  HOST,
   RUNTIME_DIR,
   LOG_DIR,
   CLIENT_DIST_DIR,
@@ -28,7 +29,7 @@ import './types';
   app.get('/*', function (req, res) {
     res.sendFile(CLIENT_INDEX_HTML);
   });
-  app.listen(PORT);
+  app.listen(PORT, HOST);
 
-  logger.info('Server running on port %d', PORT);
+  logger.info('Server running on host %s, port %d', HOST, PORT);
 })();

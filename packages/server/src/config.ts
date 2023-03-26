@@ -1,6 +1,7 @@
 import path from 'path';
 
-export const PORT = process.env.PORT || 3000;
+export const HOST = process.env.HOST || '';
+export const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 export const RUNTIME_DIR =
   process.env.RUNTIME_DIR || path.resolve(process.cwd(), '.run');
