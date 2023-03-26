@@ -7,7 +7,6 @@
     "clean": "rimraf dist *.tsbuildinfo",
     "webpack": "cross-env NODE_ENV=production webpack",
     "analyze": "cross-env NODE_ENV=production webpack --profile --json > stats.json && npx webpack-bundle-analyzer stats.json",
-    "build": "npm-run-all clean webpack",
     "dev": "cross-env NODE_ENV=development webpack serve --hot"
   },
   "author": "Botao <wxt2005@gmail.com> (https://github.com/wxt2005)",

@@ -11,7 +11,8 @@
     "tsc": "tsc -b tsconfig.build.json",
     "build": "npm-run-all clean tsc",
     "start": "cross-env NODE_ENV=production node -r dotenv/config .",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate:reset": "npx prisma migrate reset"
   },
   "author": "Botao <wxt2005@gmail.com> (https://github.com/wxt2005)",
   "repository": {

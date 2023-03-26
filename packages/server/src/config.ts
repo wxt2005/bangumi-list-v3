@@ -18,5 +18,3 @@ export const DATA_FILE = process.env.DATA_FILE || 'data.json';
 
 export const CLIENT_DIST_DIR =
   process.env.CLIENT_DIST_DIR || path.resolve(__dirname, '../../client/dist');
-
-export const CLIENT_INDEX_HTML = path.resolve(CLIENT_DIST_DIR, 'index.html');

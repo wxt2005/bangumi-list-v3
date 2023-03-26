@@ -1,0 +1,28 @@
+.root {
+  padding: 12px;
+}
+
+.heading {
+  font-size: 40px;
+  padding-left: 12px;
+}
+
+.sectionBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 16px 0;
+}
+
+.section {
+  padding: 16px;
+}
+
+.sectionHeader {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+.sectionList li {
+  margin-bottom: 4px;
+  font-size: 18px;
+}

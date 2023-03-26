@@ -1,0 +1,18 @@
+.content {
+  background: #fff;
+}
+
+.item {
+  width: 100%;
+}
+
+.item + .item {
+  margin-top: 12px;
+}
+
+.empty {
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}

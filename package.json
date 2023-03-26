@@ -28,7 +28,8 @@
   "workspaces": [
     "packages/shared",
     "packages/server",
-    "packages/client"
+    "packages/client",
+    "packages/next"
   ],
   "private": true,
   "devDependencies": {

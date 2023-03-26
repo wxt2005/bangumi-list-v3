@@ -1,0 +1,8 @@
+:root {
+  --color-theme-green: #1abc9c;
+  --color-theme-blue: #34495e;
+  --content-max-width: 1024px;
+  --breakpoint-sm: 640px;
+  --active-opacity: 0.6;
+  --disable-opacity: 0.4;
+}

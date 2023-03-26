@@ -79,3 +79,4 @@ data/
 dist/
 .env
 stats.json
+.next

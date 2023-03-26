@@ -1,0 +1,3 @@
+{
+  "plugins": ["@next/eslint-plugin-next"]
+}

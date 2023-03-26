@@ -4,14 +4,7 @@ import bangumiModel from './models/bangumi.model';
 import fse from 'fs-extra';
 import pinoHttp from 'pino-http';
 import logger from './logger';
-import {
-  PORT,
-  HOST,
-  RUNTIME_DIR,
-  LOG_DIR,
-  CLIENT_DIST_DIR,
-  CLIENT_INDEX_HTML,
-} from './config';
+import { PORT, HOST, RUNTIME_DIR, LOG_DIR } from './config';
 import './types';
 
 (async function main() {
@@ -25,10 +18,6 @@ import './types';
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use('/api/v1', apiV1Routes);
-  app.use(express.static(CLIENT_DIST_DIR));
-  app.get('/*', function (req, res) {
-    res.sendFile(CLIENT_INDEX_HTML);
-  });
   app.listen(PORT, HOST);
 
   logger.info('Server running on host %s, port %d', HOST, PORT);
