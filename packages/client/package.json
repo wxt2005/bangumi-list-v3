@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist *.tsbuildinfo",
-    "webpack": "cross-env NODE_ENV=production webpack",
-    "analyze": "cross-env NODE_ENV=production webpack --profile --json > stats.json && npx webpack-bundle-analyzer stats.json",
-    "dev": "cross-env NODE_ENV=development webpack serve --hot"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "author": "Botao <wxt2005@gmail.com> (https://github.com/wxt2005)",
   "repository": {
@@ -17,54 +18,21 @@
   },
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/plugin-transform-runtime": "^7.16.0",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.16.0",
-    "@babel/runtime": "^7.16.3",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
-    "@reduxjs/toolkit": "^1.6.2",
-    "@svgr/webpack": "^6.3.1",
-    "@types/react": "^18.0.29",
-    "@types/react-dom": "^18.0.11",
-    "@types/react-redux": "^7.1.20",
-    "@types/webpack": "^5.28.0",
-    "autoprefixer": "^10.3.7",
-    "axios": "^0.23.0",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-date-fns": "^2.0.0",
-    "babel-plugin-lodash": "^3.3.4",
-    "classnames": "^2.3.1",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^9.1.0",
-    "css-loader": "^6.4.0",
-    "css-minimizer-webpack-plugin": "^3.1.3",
-    "date-fns": "^2.25.0",
-    "file-loader": "^6.2.0",
-    "history": "^5.1.0",
-    "html-webpack-partials-plugin": "^0.8.0",
-    "html-webpack-plugin": "^5.4.0",
-    "lodash": "^4.17.21",
-    "mini-css-extract-plugin": "^2.4.2",
-    "postcss-loader": "^6.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^7.2.5",
-    "react-refresh": "^0.10.0",
-    "react-router-dom": "^6.0.0",
-    "style-loader": "^3.3.0",
-    "ts-loader": "^9.2.6",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.58.2",
-    "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
-  },
   "browserslist": [
     "defaults"
   ],
   "dependencies": {
-    "focus-trap-react": "^10.0.0"
+    "@svgr/webpack": "^7.0.0",
+    "axios": "^1.3.5",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "next": "^13.2.4",
+    "nextjs-google-analytics": "^2.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.35",
+    "eslint-config-next": "^13.2.4"
   }
 }

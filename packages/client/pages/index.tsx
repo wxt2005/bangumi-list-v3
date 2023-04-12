@@ -1,4 +1,3 @@
-import type { GetServerSideProps } from 'next';
 import type { SiteMeta, Item } from 'bangumi-list-v3-shared';
 import type { Weekday } from '../types';
 import React, { useEffect, useState, useMemo } from 'react';
