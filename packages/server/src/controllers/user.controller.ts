@@ -3,6 +3,7 @@ import userModel, { UserFull } from '../models/user.model';
 import { User } from 'bangumi-list-v3-shared';
 import jwt from 'jsonwebtoken';
 import tokenModel from '../models/token.model';
+import logger from '../logger';
 
 export async function create(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body;
@@ -84,7 +85,13 @@ export async function login(req: Request, res: Response): Promise<void> {
     { expiresIn: '1y' }
   );
 
-  await tokenModel.add(user.id, token);
+  try {
+    await tokenModel.add(user.id, token);
+  } catch (error) {
+    logger.error(error || {}, 'Add token failed');
+    res.sendStatus(500);
+    return;
+  }
 
   res.status(200).send({ token });
 }
@@ -95,7 +102,11 @@ export async function logout(req: Request, res: Response): Promise<void> {
     return;
   }
 
-  await tokenModel.remove(req.user.id, req.user.token);
+  try {
+    await tokenModel.remove(req.user.id, req.user.token);
+  } catch (error) {
+    logger.error(error || {}, 'Remove token failed');
+  }
 
   res.sendStatus(200);
 }
