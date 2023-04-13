@@ -5,3 +5,9 @@ export interface RequestUser {
   role: UserRole;
   token: string;
 }
+
+declare module 'express-serve-static-core' {
+  export interface Request {
+    user?: RequestUser;
+  }
+}
