@@ -82,7 +82,8 @@ export default function ConfigPage(): JSX.Element | null {
       <Head>
         <title>设置 | 番组放送</title>
       </Head>
-      <Container>
+      <Container className={styles.root}>
+        <h2 className={styles.heading}>设置</h2>
         <form className={styles.form} onSubmit={handleFormSubmit}>
           <div>
             <label htmlFor="newOnly">只显示新番</label>

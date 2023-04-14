@@ -1,7 +1,17 @@
+.root {
+  padding: 12px;
+}
+
+.heading {
+  font-size: 40px;
+  padding-left: 12px;
+}
+
 .form {
   font-size: 18px;
   display: flex;
   flex-direction: column;
+  padding: 12px;
 }
 
 .form > div {
@@ -21,6 +31,15 @@
   border-radius: 4px;
   padding: 6px 12px;
   transition: opacity 0.3s ease;
+  max-width: 240px;
+  width: 100%;
+  margin: 24px auto 0;
+}
+
+@media (max-width: 640px) {
+  .confirmButton {
+    max-width: none;
+  }
 }
 
 .confirmButton:hover,
