@@ -37,7 +37,7 @@ export default function Core({
           commonPreference = await getCommonPreference();
           bangumiPreference = await getBangumiPreference();
         } catch (error) {
-          if (error instanceof AxiosError && error.response.status === 401) {
+          if (error instanceof AxiosError && error.response?.status === 401) {
             api.removeCredential();
           } else {
             console.error(error);

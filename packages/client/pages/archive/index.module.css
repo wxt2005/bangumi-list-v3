@@ -11,6 +11,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 16px 0;
+
+}
+
+@media (max-width: 640px) {
+  .sectionBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .section {
