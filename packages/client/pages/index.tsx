@@ -1,4 +1,3 @@
-import type { SiteMeta, Item } from 'bangumi-list-v3-shared';
 import type { Weekday } from '../types';
 import React, { useEffect, useState, useMemo } from 'react';
 import Top from '../components/common/Top';
@@ -18,11 +17,20 @@ import { getOnair, getSites } from '../models/bangumi.model';
 import { bangumiTemplates } from '../constants/links';
 import Container from '../components/common/Container';
 import Head from 'next/head';
+import useSWR from 'swr';
 import styles from './index.module.css';
 
 export default function OnAirPage(): JSX.Element {
-  const [items, setItems] = useState<Item[]>([]);
-  const [siteMeta, setSiteMeta] = useState<SiteMeta>({});
+  const {
+    data: onairData,
+    error: onairError,
+    isLoading: onairIsLoading,
+  } = useSWR('bangumi/onair', () => getOnair());
+  const {
+    data: siteData,
+    error: siteError,
+    isLoading: siteIsLoading,
+  } = useSWR('bangumi/site', () => getSites());
   const [currentTab, setCurrentTab] = useState<Weekday>(new Date().getDay());
   const [searchText, setSearchText] = useState<string>('');
   const {
@@ -34,6 +42,7 @@ export default function OnAirPage(): JSX.Element {
   );
   const isInSearch = !!searchText;
   const filteredItems = useMemo(() => {
+    const items = onairData?.items || [];
     if (!items.length) return [];
     let filteredItems = [];
     if (isInSearch) {
@@ -52,7 +61,7 @@ export default function OnAirPage(): JSX.Element {
     }
     return filteredItems;
   }, [
-    items,
+    onairData,
     isInSearch,
     searchText,
     currentTab,
@@ -63,21 +72,16 @@ export default function OnAirPage(): JSX.Element {
     hoistWatchingIds,
   ]);
   const modifiedSiteMeta = useMemo(() => {
+    if (!siteData) return {};
+
     return {
-      ...siteMeta,
+      ...siteData,
       bangumi: {
-        ...siteMeta.bangumi,
+        ...siteData.bangumi,
         urlTemplate: bangumiTemplates[bangumiDomain],
       },
     };
-  }, [siteMeta, bangumiDomain]);
-  useEffect(() => {
-    (async () => {
-      const [onairData, siteMeta] = await Promise.all([getOnair(), getSites()]);
-      setItems(onairData.items);
-      setSiteMeta(siteMeta);
-    })();
-  }, []);
+  }, [siteData, bangumiDomain]);
 
   const handleTabClick = (tab: Weekday) => {
     setCurrentTab(tab);
@@ -93,6 +97,21 @@ export default function OnAirPage(): JSX.Element {
       setHoistWatchingIds([]);
     }
   }, [currentTab, hoistWatching]);
+
+  let content = null;
+  if (!!onairError || !!siteError) {
+    content = <p className={styles.status}>获取数据失败，请稍后重试</p>;
+  } else if (onairIsLoading || siteIsLoading) {
+    content = <p className={styles.status}>加载中……</p>;
+  } else {
+    content = (
+      <BangumiItemTable
+        items={filteredItems}
+        siteMeta={modifiedSiteMeta}
+        emptyText={isInSearch ? '无结果' : '暂无'}
+      />
+    );
+  }
 
   return (
     <>
@@ -111,11 +130,7 @@ export default function OnAirPage(): JSX.Element {
             <span>设置</span>
           </Link>
         </header>
-        <BangumiItemTable
-          items={filteredItems}
-          siteMeta={modifiedSiteMeta}
-          emptyText={isInSearch ? '无结果' : '暂无'}
-        />
+        {content}
       </Container>
     </>
   );
