@@ -2,6 +2,7 @@ import jwt, { JwtPayload, TokenExpiredError } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import tokenModel from '../models/token.model';
 import { RequestUser } from '../types';
+import logger from '../logger';
 
 const auth = async (
   req: Request,
@@ -37,7 +38,11 @@ const auth = async (
   } catch (error) {
     if (error instanceof TokenExpiredError) {
       const decoded = jwt.decode(token) as JwtPayload;
-      tokenModel.remove(decoded.userID, token);
+      try {
+        await tokenModel.remove(decoded.userID, token);
+      } catch (error) {
+        logger.error(error || {}, 'Remove token failed');
+      }
     }
     console.error(error);
     res.sendStatus(401);
