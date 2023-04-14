@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { useEffect } from 'react';
 import api from '../utils/api';
 import { getUser } from '../models/user.model';
@@ -36,7 +37,11 @@ export default function Core({
           commonPreference = await getCommonPreference();
           bangumiPreference = await getBangumiPreference();
         } catch (error) {
-          console.error(error);
+          if (error instanceof AxiosError && error.response.status === 401) {
+            api.removeCredential();
+          } else {
+            console.error(error);
+          }
         }
       } else {
         try {
