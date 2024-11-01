@@ -1,7 +1,7 @@
 import { BangumiDomain } from 'bangumi-list-v3-shared';
 
 export const SUBMIT_PROBLEM_LINK = encodeURI(
-  'mailto:wxt2005@gmail.com?subject=番组放送-错误提交'
+  'mailto:wise.home5941@fastmail.com?subject=番组放送-错误提交'
 );
 
 export const bangumiTemplates = {
