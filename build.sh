@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 npm install
 npm run prisma:generate -w packages/server
