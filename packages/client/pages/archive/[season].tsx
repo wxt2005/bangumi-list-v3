@@ -7,7 +7,7 @@ import formatSeason from '../../utils/formatSeason';
 import { searchFilter, itemSortCompare } from '../../utils/bangumiItemUtils';
 import { usePreference } from '../../contexts/preferenceContext';
 import type { Item, SiteMeta } from 'bangumi-list-v3-shared';
-import { bangumiTemplates } from '../../constants/links';
+import { bangumiTemplates, mikanTemplates } from '../../constants/links';
 import Container from '../../components/common/Container';
 import Head from 'next/head';
 import styles from './[season].module.css';
@@ -32,7 +32,7 @@ export default function ArchivePage({
     setSearchText(text);
   };
   const {
-    common: { bangumiDomain },
+    common: { bangumiDomain, mikanDomain },
   } = usePreference();
 
   const modifiedSiteMeta = useMemo(() => {
@@ -41,6 +41,10 @@ export default function ArchivePage({
       bangumi: {
         ...siteMeta.bangumi,
         urlTemplate: bangumiTemplates[bangumiDomain],
+      },
+      mikan: {
+        ...siteMeta.mikan,
+        urlTemplate: mikanTemplates[mikanDomain],
       },
     };
   }, [siteMeta, bangumiDomain]);

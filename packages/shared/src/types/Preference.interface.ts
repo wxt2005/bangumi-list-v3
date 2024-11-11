@@ -4,11 +4,17 @@ export enum BangumiDomain {
   CHII_IN = 'chii.in',
 }
 
+export enum MikanDomain {
+  MIKANANI_ME = 'mikanani.me',
+  MIKANANI_TV = 'mikanani.tv',
+}
+
 export interface CommonPreference {
   newOnly: boolean;
   watchingOnly: boolean;
   hoistWatching: boolean;
   bangumiDomain: BangumiDomain;
+  mikanDomain: MikanDomain;
 }
 
 export interface VersionedCommonPreference extends CommonPreference {

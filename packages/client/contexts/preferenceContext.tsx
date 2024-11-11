@@ -3,6 +3,7 @@ import {
   VersionedCommonPreference,
   VersionedBangumiPreference,
   BangumiDomain,
+  MikanDomain,
 } from 'bangumi-list-v3-shared';
 
 export const PreferenceContext = createContext<PreferenceState | null>(null);
@@ -16,6 +17,7 @@ export interface PreferenceState {
     watchingOnly: boolean;
     hoistWatching: boolean;
     bangumiDomain: BangumiDomain;
+    mikanDomain: MikanDomain;
   };
   bangumi: {
     version: number;
@@ -30,6 +32,7 @@ const initialState: PreferenceState = {
     watchingOnly: false,
     hoistWatching: false,
     bangumiDomain: BangumiDomain.BANGUMI_TV,
+    mikanDomain: MikanDomain.MIKANANI_ME,
   },
   bangumi: {
     version: 0,

@@ -14,7 +14,7 @@ import {
 import { usePreference } from '../contexts/preferenceContext';
 import Link from 'next/link';
 import { getOnair, getSites } from '../models/bangumi.model';
-import { bangumiTemplates } from '../constants/links';
+import { bangumiTemplates, mikanTemplates } from '../constants/links';
 import Container from '../components/common/Container';
 import Head from 'next/head';
 import useSWR from 'swr';
@@ -34,7 +34,13 @@ export default function OnAirPage(): JSX.Element {
   const [currentTab, setCurrentTab] = useState<Weekday>(new Date().getDay());
   const [searchText, setSearchText] = useState<string>('');
   const {
-    common: { newOnly, watchingOnly, hoistWatching, bangumiDomain },
+    common: {
+      newOnly,
+      watchingOnly,
+      hoistWatching,
+      bangumiDomain,
+      mikanDomain,
+    },
     bangumi: { watching },
   } = usePreference();
   const [hoistWatchingIds, setHoistWatchingIds] = useState<string[] | null>(
@@ -79,6 +85,10 @@ export default function OnAirPage(): JSX.Element {
       bangumi: {
         ...siteData.bangumi,
         urlTemplate: bangumiTemplates[bangumiDomain],
+      },
+      mikan: {
+        ...siteData.mikan,
+        urlTemplate: mikanTemplates[mikanDomain],
       },
     };
   }, [siteData, bangumiDomain]);

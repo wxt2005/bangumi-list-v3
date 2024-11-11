@@ -1,5 +1,5 @@
 import React, { FormEventHandler, useState, useEffect } from 'react';
-import { BangumiDomain } from 'bangumi-list-v3-shared';
+import { BangumiDomain, MikanDomain } from 'bangumi-list-v3-shared';
 import {
   usePreference,
   usePreferenceDispatch,
@@ -18,12 +18,17 @@ const bangumiDomainOptions = [
   BangumiDomain.CHII_IN,
 ];
 
+const mikanDomainOptions = [MikanDomain.MIKANANI_ME, MikanDomain.MIKANANI_TV];
+
 export default function ConfigPage(): JSX.Element | null {
   const [newOnly, setNewOnly] = useState<boolean>(false);
   const [watchingOnly, setWatchingOnly] = useState<boolean>(false);
   const [hoistWatching, setHoistWatching] = useState<boolean>(false);
   const [bangumiDomain, setBangumiDomain] = useState<BangumiDomain>(
     BangumiDomain.BANGUMI_TV
+  );
+  const [mikanDomain, setMikanDomain] = useState<MikanDomain>(
+    MikanDomain.MIKANANI_ME
   );
   const preferenceDispatch = usePreferenceDispatch();
   const { common: commonPreference } = usePreference();
@@ -34,6 +39,7 @@ export default function ConfigPage(): JSX.Element | null {
     setWatchingOnly(commonPreference.watchingOnly);
     setHoistWatching(commonPreference.hoistWatching);
     setBangumiDomain(commonPreference.bangumiDomain);
+    setMikanDomain(commonPreference.mikanDomain);
   }, [commonPreference]);
 
   const handleNewOnlyChange: React.FormEventHandler<HTMLInputElement> = (e) => {
@@ -54,6 +60,9 @@ export default function ConfigPage(): JSX.Element | null {
   ) => {
     setBangumiDomain(e.currentTarget.value as BangumiDomain);
   };
+  const handleMikanDomainChange: FormEventHandler<HTMLSelectElement> = (e) => {
+    setMikanDomain(e.currentTarget.value as MikanDomain);
+  };
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const newPreference = {
@@ -61,6 +70,7 @@ export default function ConfigPage(): JSX.Element | null {
       watchingOnly,
       hoistWatching,
       bangumiDomain,
+      mikanDomain,
       version: Date.now(),
     };
 
@@ -120,6 +130,20 @@ export default function ConfigPage(): JSX.Element | null {
               onChange={handleBangumiDomainChange}
             >
               {bangumiDomainOptions.map((domain) => (
+                <option key={domain} value={domain}>
+                  {domain}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="mikanDomain">Bangumi域名</label>
+            <select
+              id="mikanDomain"
+              value={mikanDomain}
+              onChange={handleMikanDomainChange}
+            >
+              {mikanDomainOptions.map((domain) => (
                 <option key={domain} value={domain}>
                   {domain}
                 </option>

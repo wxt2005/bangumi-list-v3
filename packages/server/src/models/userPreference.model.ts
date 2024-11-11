@@ -2,6 +2,7 @@ import {
   CommonPreference,
   VersionedCommonPreference,
   BangumiDomain,
+  MikanDomain,
 } from 'bangumi-list-v3-shared';
 import { PrismaClient } from '@prisma/client';
 
@@ -12,6 +13,7 @@ const DEFAULT_COMMON_PREFERENCE: CommonPreference = {
   watchingOnly: false,
   hoistWatching: false,
   bangumiDomain: BangumiDomain.BGM_TV,
+  mikanDomain: MikanDomain.MIKANANI_ME,
 };
 
 class UserPreferenceModel {
@@ -27,6 +29,7 @@ class UserPreferenceModel {
     if (!row) return null;
     try {
       return {
+        ...DEFAULT_COMMON_PREFERENCE,
         ...JSON.parse(row.common),
         version: row.updatedAt.getTime() || 0,
       };

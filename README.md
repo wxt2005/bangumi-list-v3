@@ -8,7 +8,7 @@ $ cp packages/server/.env.example packages/server/.env
 $ npm run dev
 ```
 
-* Client pages hosted on `http://localhost:8080/`
+* Client pages hosted on `http://localhost:3000/`
 * Server API hosted on `http://localhost:3000/api/v1/`. Please check [API Doc](./packages/server/API.md)
 
 ## Install dependency
