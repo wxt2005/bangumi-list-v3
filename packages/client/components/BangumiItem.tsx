@@ -41,7 +41,7 @@ export default function BangumiItem(props: Props): JSX.Element {
   for (const site of item.sites) {
     if (!siteMeta[site.site]) continue;
     const node = (
-      <li key={site.id}>
+      <li key={`${site.site}_${site.id}`}>
         <BangumiLinkItem site={site} siteMeta={siteMeta} />
       </li>
     );
