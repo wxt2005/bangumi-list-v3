@@ -12,5 +12,5 @@ export const bangumiTemplates = {
 
 export const mikanTemplates = {
   [MikanDomain.MIKANANI_ME]: 'https://mikanani.me/Home/Bangumi/{{id}}',
-  [MikanDomain.MIKANANI_TV]: 'https://mikanani.tv/Home/Bangumi/{{id}}',
+  [MikanDomain.MIKANIME_TV]: 'https://mikanime.tv/Home/Bangumi/{{id}}',
 };

@@ -18,7 +18,7 @@ const bangumiDomainOptions = [
   BangumiDomain.CHII_IN,
 ];
 
-const mikanDomainOptions = [MikanDomain.MIKANANI_ME, MikanDomain.MIKANANI_TV];
+const mikanDomainOptions = [MikanDomain.MIKANANI_ME, MikanDomain.MIKANIME_TV];
 
 export default function ConfigPage(): JSX.Element | null {
   const [newOnly, setNewOnly] = useState<boolean>(false);
@@ -137,7 +137,7 @@ export default function ConfigPage(): JSX.Element | null {
             </select>
           </div>
           <div>
-            <label htmlFor="mikanDomain">Bangumi域名</label>
+            <label htmlFor="mikanDomain">蜜柑计划域名</label>
             <select
               id="mikanDomain"
               value={mikanDomain}

@@ -6,7 +6,7 @@ export enum BangumiDomain {
 
 export enum MikanDomain {
   MIKANANI_ME = 'mikanani.me',
-  MIKANANI_TV = 'mikanani.tv',
+  MIKANIME_TV = 'mikanime.tv',
 }
 
 export interface CommonPreference {
