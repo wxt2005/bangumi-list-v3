@@ -6,15 +6,17 @@ export function createLogger(): pino.Logger {
   const TIME_FORMAT = 'SYS:yyyy-mm-dd HH:MM:ss o';
 
   if (process.env.NODE_ENV === 'production') {
-    return pino({
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          translateTime: TIME_FORMAT,
-          destination: path.resolve(LOG_DIR, LOG_FILE),
+    return pino(
+      {
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            translateTime: TIME_FORMAT,
+          },
         },
       },
-    });
+      pino.destination(path.resolve(LOG_DIR, LOG_FILE))
+    );
   }
 
   return pino({
