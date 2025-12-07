@@ -90,7 +90,7 @@ function generateUpdatedData(
     if (!(key in updatedData)) continue;
     updatedData[key] = value;
   }
-  return updatedData as CommonPreference;
+  return updatedData as unknown as CommonPreference;
 }
 
 export default new UserPreferenceModel();
