@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import zhCN from 'date-fns/locale/zh-CN';
+import { zhCN } from 'date-fns/locale/zh-CN';
 import { Item, SiteMeta, SiteType } from 'bangumi-list-v3-shared';
 
 function broadcastToTimeString(broadcast?: string, begin?: string): string {

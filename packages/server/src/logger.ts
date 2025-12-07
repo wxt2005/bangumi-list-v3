@@ -8,8 +8,11 @@ export function createLogger(): pino.Logger {
   if (process.env.NODE_ENV === 'production') {
     return pino(
       {
-        prettyPrint: {
-          translateTime: TIME_FORMAT,
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            translateTime: TIME_FORMAT,
+          },
         },
       },
       pino.destination(path.resolve(LOG_DIR, LOG_FILE))
@@ -17,10 +20,13 @@ export function createLogger(): pino.Logger {
   }
 
   return pino({
-    prettyPrint: {
-      translateTime: TIME_FORMAT,
-      colorize: true,
-      ignore: 'hostname,pid',
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        translateTime: TIME_FORMAT,
+        colorize: true,
+        ignore: 'hostname,pid',
+      },
     },
   });
 }

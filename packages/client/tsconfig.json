@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
     "lib": [
@@ -12,7 +11,19 @@
     "noEmit": true,
     "incremental": true,
     "isolatedModules": true,
-    "strictNullChecks": true
+    "target": "esnext",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "..",
+    "paths": {
+      "bangumi-list-v3-*": [
+        "*/src"
+      ]
+    },
+    "strict": false
   },
   "references": [
     {
@@ -20,13 +31,16 @@
     }
   ],
   "typeRoots": [
-    "./src/types",
-    "node_modules/@types"
+    "./types",
+    "../../node_modules/@types"
   ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

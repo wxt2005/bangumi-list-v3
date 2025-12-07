@@ -71,7 +71,17 @@ export const validate = (
     return;
   }
   const extractedErrors: { [key: string]: string }[] = [];
-  errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
+  errors.array().map((err) => {
+    // In express-validator v7, 'param' is now 'path' for field errors
+    const field: string =
+      'path' in err
+        ? err.path
+        : 'param' in err
+          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (err as any).param
+          : 'unknown';
+    extractedErrors.push({ [field]: err.msg });
+  });
 
   res.status(422).json({
     errors: extractedErrors,
