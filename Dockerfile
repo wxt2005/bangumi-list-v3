@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:20.18.0-bookworm
+FROM node:24.11.1-bookworm
 
 ARG GA_ID
 
