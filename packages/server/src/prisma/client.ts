@@ -1,12 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaLibSql } from '@prisma/adapter-libsql';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { resolve } from 'node:path';
+import { PrismaClient } from './generated/prisma/client';
 
-/**
- * Resolves the database URL, converting relative file paths to absolute paths.
- * This is necessary because Prisma 7 with adapters resolves paths relative to
- * the generated client location, not the project root.
- */
 function resolveDatabaseUrl(url: string | undefined): string {
   if (!url) {
     return 'file:./dev.db';
@@ -14,14 +9,14 @@ function resolveDatabaseUrl(url: string | undefined): string {
 
   if (url.startsWith('file:')) {
     const filePath = url.replace('file:', '');
-    return `file:${resolve(process.cwd(), filePath)}`;
+    return `file:${resolve(__dirname, filePath)}`;
   }
 
   return url;
 }
 
 // Create the libSQL adapter with resolved database URL
-const adapter = new PrismaLibSql({
+const adapter = new PrismaBetterSqlite3({
   url: resolveDatabaseUrl(process.env.DATABASE_URL),
 });
 

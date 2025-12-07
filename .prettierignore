@@ -1,3 +1,4 @@
 dist/
 .run/
 *.d.ts
+generated/
