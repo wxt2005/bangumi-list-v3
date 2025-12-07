@@ -23,6 +23,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@libsql/client": "^0.15.15",
+    "@prisma/adapter-libsql": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "axios": "^1.13.2",
     "bcrypt": "^6.0.0",

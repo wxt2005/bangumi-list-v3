@@ -10,6 +10,7 @@ $ npm run dev
 
 * Client pages hosted on `http://localhost:3000/`
 * Server API hosted on `http://localhost:3000/api/v1/`. Please check [API Doc](./packages/server/API.md)
+* For working with Prisma ORM and database migrations, see [Prisma Development Guide](./packages/server/PRISMA.md)
 
 ## Install dependency
 
