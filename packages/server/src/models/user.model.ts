@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { User } from 'bangumi-list-v3-shared';
 import tokenModel from './token.model';
-import { User as UserRow } from '@prisma/client';
+import { User as UserRow } from '../prisma/generated/prisma/client';
 import prisma from '../prisma/client';
 
 const saltRounds = 10;
