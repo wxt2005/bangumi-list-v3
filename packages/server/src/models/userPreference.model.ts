@@ -4,9 +4,7 @@ import {
   BangumiDomain,
   MikanDomain,
 } from 'bangumi-list-v3-shared';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../prisma/client';
 
 const DEFAULT_COMMON_PREFERENCE: CommonPreference = {
   newOnly: false,
@@ -87,7 +85,7 @@ class UserPreferenceModel {
 function generateUpdatedData(
   newData: Partial<CommonPreference>
 ): CommonPreference {
-  const updatedData: any = { ...DEFAULT_COMMON_PREFERENCE };
+  const updatedData: Record<string, unknown> = { ...DEFAULT_COMMON_PREFERENCE };
   for (const [key, value] of Object.entries(newData)) {
     if (!(key in updatedData)) continue;
     updatedData[key] = value;

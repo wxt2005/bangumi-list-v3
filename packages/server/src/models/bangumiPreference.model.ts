@@ -2,9 +2,7 @@ import {
   BangumiPreference,
   VersionedBangumiPreference,
 } from 'bangumi-list-v3-shared';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../prisma/client';
 
 const DEFAULT_BANGUMI_PREFERENCE: BangumiPreference = {
   watching: [],

@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
 import userModel, { UserRole } from '../models/user.model';
-
-const prisma = new PrismaClient();
+import prisma from './client';
 
 async function main() {
   const ADMIN_EMAIL = process.env.ADMIN_EMAIL;

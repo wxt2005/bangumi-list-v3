@@ -2,9 +2,8 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { User } from 'bangumi-list-v3-shared';
 import tokenModel from './token.model';
-import { PrismaClient, User as UserRow } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { User as UserRow } from '@prisma/client';
+import prisma from '../prisma/client';
 
 const saltRounds = 10;
 
