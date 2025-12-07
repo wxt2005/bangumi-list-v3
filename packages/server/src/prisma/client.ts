@@ -2,13 +2,27 @@ import { PrismaClient } from '@prisma/client';
 import { PrismaLibSql } from '@prisma/adapter-libsql';
 import { resolve } from 'node:path';
 
-// Create the libSQL adapter with absolute path to database file
+/**
+ * Resolves the database URL, converting relative file paths to absolute paths.
+ * This is necessary because Prisma 7 with adapters resolves paths relative to
+ * the generated client location, not the project root.
+ */
+function resolveDatabaseUrl(url: string | undefined): string {
+  if (!url) {
+    return 'file:./dev.db';
+  }
+
+  if (url.startsWith('file:')) {
+    const filePath = url.replace('file:', '');
+    return `file:${resolve(process.cwd(), filePath)}`;
+  }
+
+  return url;
+}
+
+// Create the libSQL adapter with resolved database URL
 const adapter = new PrismaLibSql({
-  url: process.env.DATABASE_URL
-    ? process.env.DATABASE_URL.startsWith('file:')
-      ? `file:${resolve(process.cwd(), process.env.DATABASE_URL.replace('file:', ''))}`
-      : process.env.DATABASE_URL
-    : 'file:./dev.db',
+  url: resolveDatabaseUrl(process.env.DATABASE_URL),
 });
 
 // Create a single instance of PrismaClient with the adapter
