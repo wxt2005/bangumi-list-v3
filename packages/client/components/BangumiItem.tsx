@@ -60,7 +60,9 @@ export default function BangumiItem(props: Props): JSX.Element {
     }
   }
   const handleWatchingClick = () => {
-    onWatchingClick && onWatchingClick();
+    if (onWatchingClick) {
+      onWatchingClick();
+    }
   };
 
   return (
@@ -91,43 +93,36 @@ export default function BangumiItem(props: Props): JSX.Element {
           </button>
         )}
       </header>
-      <dl className={styles.inner}>
-        <div className={styles.jpTime}>
-          <dt>日本</dt>
-          <dd>{broadcastTimeString.jp || '暂无'}</dd>
-        </div>
-        <div className={styles.cnTime}>
-          <dt>大陆</dt>
-          <dd>{broadcastTimeString.cn || '暂无'}</dd>
-        </div>
-        <div className={styles.start}>
-          <dt>开播</dt>
-          <dd>{beginString}</dd>
+      <div className={styles.inner}>
+        <div className={styles.datetime}>
+          <div className={styles.sectionTitle}>时间:</div>
+          <span className={styles.start}>{beginString} 起</span>
+          <span>
+            {broadcastTimeString.jp ? `每${broadcastTimeString.jp}` : '暂无'}
+          </span>
         </div>
         <div className={styles.info}>
-          <dt>信息</dt>
-          <dd>
-            <ul>
-              {item.officialSite ? (
-                <li>
-                  <a href={item.officialSite} rel="noopener" target="_blank">
-                    官网
-                  </a>
-                </li>
-              ) : null}
-              {infoSites}
-            </ul>
-          </dd>
+          <div className={styles.sectionTitle}>情报:</div>
+          <ul>
+            {item.officialSite ? (
+              <li>
+                <a href={item.officialSite} rel="noopener" target="_blank">
+                  官网
+                </a>
+              </li>
+            ) : null}
+            {infoSites}
+          </ul>
         </div>
         <div className={styles.onair}>
-          <dt>配信</dt>
-          <dd>{onairSites.length ? <ul>{onairSites}</ul> : '暂无'}</dd>
+          <div className={styles.sectionTitle}>配信:</div>
+          {onairSites.length ? <ul>{onairSites}</ul> : <div>暂无</div>}
         </div>
         <div className={styles.resource}>
-          <dt>下载</dt>
-          <dd>{resourceSites.length ? <ul>{resourceSites}</ul> : '暂无'}</dd>
+          <div className={styles.sectionTitle}>下载:</div>
+          {resourceSites.length ? <ul>{resourceSites}</ul> : <div>暂无</div>}
         </div>
-      </dl>
+      </div>
     </article>
   );
 }

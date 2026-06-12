@@ -1,6 +1,6 @@
 .root {
   background: #fff;
-  box-shadow:  4px 12px 40px 6px rgba(0, 0, 0, 0.09);
+  box-shadow: 4px 12px 40px 6px rgba(0, 0, 0, 0.09);
   transform: translateY(0);
   perspective: 3200px;
   padding: 24px;
@@ -9,8 +9,7 @@
 
 @media (max-width: 640px) {
   .root {
-    padding: 12px;
-    padding-bottom: 6px;
+    padding: 20px;
   }
 }
 
@@ -74,6 +73,9 @@
   .titleBox {
     padding-right: 24px;
     word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
   }
 }
 
@@ -99,59 +101,35 @@
 .inner {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr 24px 2fr;
+  grid-template-columns: 2fr 24px 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas:
-    "jpTime cnTime divider onair"
-    "start info divider resource";
+    'datetime divider info'
+    'onair divider resource';
   row-gap: 6px;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .inner:after {
-  content: " ";
+  content: ' ';
   display: block;
   grid-area: divider;
   width: 1px;
   height: 100%;
   background: #d2d2d7;
+  transform: translateX(12px);
 }
 
-@media (max-width: 665px) {
-  .inner {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas:
-    "jpTime cnTime"
-    "start info"
-    "resource resource"
-    "onair onair";
-  }
-}
-
-@media (max-width: 375px) {
-  .inner {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-areas:
-    "jpTime cnTime"
-    "start start"
-    "info info"
-    "resource resource"
-    "onair onair";
-  }
-}
-
-@media (max-width: 330px) {
-  .inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-areas:
-    "jpTime"
-    "cnTime"
-    "start"
-    "info"
-    "resource"
-    "onair";
+@media (max-width: 640px) {
+  .inner:after {
+    display: none;
   }
 }
 
@@ -163,21 +141,17 @@
   flex-shrink: 0;
 }
 
-.inner > div {
-  display: flex;
-  line-height: 1.2;
-}
-
-.jpTime {
-  grid-area: jpTime;
-}
-
-.cnTime {
-  grid-area: cnTime;
+.sectionTitle {
+  margin-right: 6px;
+  flex-shrink: 0;
 }
 
 .start {
-  grid-area: start;
+  margin-right: 6px;
+}
+
+.info {
+  grid-area: info;
 }
 
 .resource {
@@ -188,48 +162,44 @@
   grid-area: onair;
 }
 
-.info {
-  grid-area: info;
+.datetime,
+.info,
+.resource,
+.onair {
+  display: flex;
 }
 
-.inner dt {
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin-right: 6px;
+.datetime {
+  grid-area: datetime;
+}
+
+.inner {
   line-height: 1.4;
 }
 
-.inner dt::after {
-  content: ":";
-}
-
-.inner dd {
-  line-height: 1.4;
-}
-
-.inner dd ul {
+.inner ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-.inner dd ul li {
+.inner ul li {
   display: flex;
   align-items: center;
   margin-right: 6px;
 }
 
-.inner dd ul li:last-child {
+.inner ul li:last-child {
   margin-right: 0;
 }
 
-.inner dd ul li:after {
-  content: "/";
+.inner ul li:after {
+  content: '/';
   font-size: 18px;
   margin-left: 6px;
   line-height: 1;
-  font-family: "Arial";
+  font-family: 'Arial';
 }
 
-.inner dd ul li:last-child:after {
+.inner ul li:last-child:after {
   content: none;
 }
