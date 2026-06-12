@@ -31,12 +31,8 @@
   padding: 2px 6px;
   font-size: 10px;
   line-height: 1.2;
-  height: 20px;
   display: inline-block;
-  position: relative;
-  top: -2px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  vertical-align: text-top;
 }
 
 .favButton {
@@ -66,17 +62,11 @@
 .titleBox {
   display: block;
   line-height: 1.4;
-  padding-right: 32px;
-}
-
-@media (max-width: 640px) {
-  .titleBox {
-    padding-right: 24px;
-    word-break: break-all;
-    display: flex;
-    flex-direction: column;
-    row-gap: 2px;
-  }
+  word-break: break-all;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  padding-right: 24px;
 }
 
 .title {
@@ -100,12 +90,8 @@
 
 .inner {
   margin-top: 12px;
-  display: grid;
-  grid-template-columns: 2fr 24px 1fr;
-  grid-template-rows: 1fr auto;
-  grid-template-areas:
-    'datetime divider info'
-    'onair divider resource';
+  display: flex;
+  flex-direction: column;
   row-gap: 6px;
   align-items: start;
 }
@@ -115,16 +101,6 @@
     display: flex;
     flex-direction: column;
   }
-}
-
-.inner:after {
-  content: ' ';
-  display: block;
-  grid-area: divider;
-  width: 1px;
-  height: 100%;
-  background: #d2d2d7;
-  transform: translateX(12px);
 }
 
 @media (max-width: 640px) {
@@ -150,27 +126,11 @@
   margin-right: 6px;
 }
 
-.info {
-  grid-area: info;
-}
-
-.resource {
-  grid-area: resource;
-}
-
-.onair {
-  grid-area: onair;
-}
-
 .datetime,
 .info,
 .resource,
 .onair {
   display: flex;
-}
-
-.datetime {
-  grid-area: datetime;
 }
 
 .inner {
