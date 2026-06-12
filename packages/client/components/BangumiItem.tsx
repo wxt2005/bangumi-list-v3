@@ -69,7 +69,7 @@ export default function BangumiItem(props: Props): JSX.Element {
     <article className={rootClassName}>
       <header className={styles.header}>
         <div className={styles.titleBox}>
-          <div className={styles.titleBoxMain}>
+          <div>
             <h3 className={styles.title}>{titleCN || item.title}</h3>
             {!isArchive && isNew ? (
               <span className={styles.newMark}>new</span>
