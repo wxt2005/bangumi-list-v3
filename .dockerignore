@@ -1,5 +1,11 @@
 .git
+.github
+.husky
 **/node_modules
 **/stats.json
-.run
-.env
+**/dist
+**/.next
+**/*.tsbuildinfo
+**/.run
+**/.env
+README.md
