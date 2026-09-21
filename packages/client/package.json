@@ -22,7 +22,6 @@
     "defaults"
   ],
   "dependencies": {
-    "@svgr/webpack": "^8.1.0",
     "axios": "^1.13.2",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
@@ -33,6 +32,7 @@
     "swr": "^2.3.7"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/react": "18.3.12",
     "eslint-config-next": "^14.2.33"
   }
